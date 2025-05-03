@@ -18,8 +18,8 @@ public class MeshGenerator : MonoBehaviour
         // Assign the mesh to the Meshfilter
         GetComponent<MeshFilter>().mesh = mesh;
 
-        //CreateTriangle();
-        CreateCube();
+        CreateTriangle();
+        //CreateCube();
         //CreateCylinder();
     }
 
@@ -40,10 +40,15 @@ public class MeshGenerator : MonoBehaviour
         Vector2[] uv = new Vector2[3]; // Each vertex should have a currosponding UV coordinate 
         int[] triangles = new int[3]; // A triangle has 3 indices
 
+        const float TRIANGLE_SIZE = 20f;
+
+        // To keep the pivot point in center of the triangle
+        Vector3 originPosition = new Vector3(-TRIANGLE_SIZE, -TRIANGLE_SIZE, 0) * 0.5f;
+
         // Set the vertex positions (in local space)
-        vertices[0] = new Vector3(0, 0, 0);
-        vertices[1] = new Vector3(0, 20, 0);
-        vertices[2] = new Vector3(20, 20, 0);
+        vertices[0] = originPosition;
+        vertices[1] = originPosition + Vector3.up * TRIANGLE_SIZE;
+        vertices[2] = originPosition + new Vector3(TRIANGLE_SIZE, TRIANGLE_SIZE, 0);
 
         // Set UV coordinates corresponding to each vertex
         uv[0] = new Vector2(0, 0);
@@ -61,7 +66,6 @@ public class MeshGenerator : MonoBehaviour
         mesh.triangles = triangles;
 
         // For testing purpose
-        Camera.main.transform.localPosition = new Vector3(7, 10, -10);
         canAnimateMesh = false;
     }
     #endregion
@@ -101,7 +105,6 @@ public class MeshGenerator : MonoBehaviour
         mesh.triangles = totalTriangles.ToArray();
 
         // For testing purpose
-        Camera.main.transform.localPosition = new Vector3(0, 0, -12);
         canAnimateMesh = true;
     }
 
@@ -148,7 +151,24 @@ public class MeshGenerator : MonoBehaviour
     #region CYLINDER
     private void CreateCylinder()
     {
+        List<Vector3> totalVertices = new List<Vector3>();
+        List<Vector2> totalUVs = new List<Vector2>();
+        List<int> totalTriangles = new List<int>();
+    }
 
+    private void CreateCircle(
+        Vector3 originPosition,
+        float size,
+        Vector3 secondVertexDirection,
+        Vector3 thirdVertexDirection,
+        ref List<Vector3> totalVertices,
+        ref List<Vector2> totalUVs,
+        ref List<int> totalTriangles
+    )
+    {
+        mesh.vertices = totalVertices.ToArray();
+        mesh.uv = totalUVs.ToArray();
+        mesh.triangles = totalTriangles.ToArray();
     }
     #endregion
 }
