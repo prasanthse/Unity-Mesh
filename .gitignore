@@ -8,6 +8,7 @@
 /[Ll]ogs/
 /[Pp]ackages/
 /AB/
+/Recordings/
 
 # Never ignore Asset meta data
 !/[Aa]ssets/**/*.meta

@@ -18,9 +18,8 @@ public class MeshGenerator : MonoBehaviour
         // Assign the mesh to the Meshfilter
         GetComponent<MeshFilter>().mesh = mesh;
 
-        CreateTriangle();
-        //CreateCube();
-        //CreateCylinder();
+        //CreateTriangle();
+        CreateCube();
     }
 
     private void Update()
@@ -145,30 +144,6 @@ public class MeshGenerator : MonoBehaviour
         totalVertices.AddRange(vertices);
         totalUVs.AddRange(uv);
         totalTriangles.AddRange(triangles);
-    }
-    #endregion
-
-    #region CYLINDER
-    private void CreateCylinder()
-    {
-        List<Vector3> totalVertices = new List<Vector3>();
-        List<Vector2> totalUVs = new List<Vector2>();
-        List<int> totalTriangles = new List<int>();
-    }
-
-    private void CreateCircle(
-        Vector3 originPosition,
-        float size,
-        Vector3 secondVertexDirection,
-        Vector3 thirdVertexDirection,
-        ref List<Vector3> totalVertices,
-        ref List<Vector2> totalUVs,
-        ref List<int> totalTriangles
-    )
-    {
-        mesh.vertices = totalVertices.ToArray();
-        mesh.uv = totalUVs.ToArray();
-        mesh.triangles = totalTriangles.ToArray();
     }
     #endregion
 }
